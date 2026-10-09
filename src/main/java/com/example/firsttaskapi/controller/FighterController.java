@@ -4,7 +4,9 @@ import com.example.firsttaskapi.dto.Fighter;
 import com.example.firsttaskapi.service.FighterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -22,5 +24,13 @@ public class FighterController {
         List<Fighter> fighters = fighterService.findAll();
 
         return ResponseEntity.ok(fighters);
+    }
+
+    @PostMapping
+    public ResponseEntity<Fighter> createFighter(@RequestBody Fighter fighter, UriComponentsBuilder uriBuilder) {
+        fighterService.insert(fighter);
+
+        URI location = uriBuilder.path("/api/fighters/{id}").buildAndExpand(fighter.getId()).toUri();
+        return ResponseEntity.created(location).body(fighter);
     }
 }

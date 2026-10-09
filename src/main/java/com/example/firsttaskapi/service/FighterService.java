@@ -18,4 +18,8 @@ public class FighterService {
     public List<Fighter> findAll() {
         return fighterRepository.findAll();
     }
+
+    public void insert(Fighter fighter) {
+        fighterRepository.insert(fighter);
+    }
 }
