@@ -18,4 +18,8 @@ public class FighterRepository {
     public List<Fighter> findAll() {
         return fighterMapper.findAll();
     }
+
+    public void insert(Fighter fighter) {
+        fighterMapper.insert(fighter);
+    }
 }
