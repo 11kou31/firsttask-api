@@ -26,4 +26,8 @@ public class FighterRepository {
     public Fighter findById(Integer id) {
         return fighterMapper.findById(id);
     }
+
+    public boolean delete(Integer id) {
+        return fighterMapper.delete(id) == 1;
+    }
 }

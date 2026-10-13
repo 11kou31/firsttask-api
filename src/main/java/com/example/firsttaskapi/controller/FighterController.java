@@ -41,4 +41,11 @@ public class FighterController {
         return ResponseEntity.ok(fighter);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        fighterService.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
