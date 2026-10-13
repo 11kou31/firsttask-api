@@ -22,4 +22,8 @@ public class FighterRepository {
     public void insert(Fighter fighter) {
         fighterMapper.insert(fighter);
     }
+
+    public Fighter findById(Integer id) {
+        return fighterMapper.findById(id);
+    }
 }
