@@ -33,4 +33,12 @@ public class FighterController {
         URI location = uriBuilder.path("/api/fighters/{id}").buildAndExpand(fighter.getId()).toUri();
         return ResponseEntity.created(location).body(fighter);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Fighter> findById(@PathVariable Integer id) {
+        Fighter fighter = fighterService.findById(id);
+
+        return ResponseEntity.ok(fighter);
+    }
+
 }

@@ -17,4 +17,7 @@ public interface FighterMapper {
     @Insert("INSERT INTO fighters (name, age, weight_class, wins, losses) VALUES (#{name}, #{age}, #{weightClass},#{wins}, #{losses})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Fighter fighter);
+
+    @Select("SELECT id, name, age, weight_class, wins, losses FROM fighters WHERE id = #{id}")
+    Fighter findById(Integer id);
 }
