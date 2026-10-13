@@ -32,4 +32,12 @@ public class FighterService {
 
         return fighter;
     }
+
+    public boolean delete(Integer id) {
+        if (!fighterRepository.delete(id)) {
+            throw new FighterNotFoundException(id);
+        }
+
+        return true;
+    }
 }

@@ -1,10 +1,7 @@
 package com.example.firsttaskapi.mapper;
 
 import com.example.firsttaskapi.dto.Fighter;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,4 +17,7 @@ public interface FighterMapper {
 
     @Select("SELECT id, name, age, weight_class, wins, losses FROM fighters WHERE id = #{id}")
     Fighter findById(Integer id);
+
+    @Delete("DELETE FROM fighters WHERE id = #{id}")
+    int delete(Integer id);
 }
