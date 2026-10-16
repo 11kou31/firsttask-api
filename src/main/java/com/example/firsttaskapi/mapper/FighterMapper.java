@@ -20,4 +20,7 @@ public interface FighterMapper {
 
     @Delete("DELETE FROM fighters WHERE id = #{id}")
     int delete(Integer id);
+
+    @Update("UPDATE fighters SET name = #{name}, age = #{age}, weight_class = #{weightClass}, wins = #{wins}, losses = #{losses} WHERE id = #{id}")
+    int update(Fighter fighter);
 }

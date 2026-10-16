@@ -1,6 +1,7 @@
 package com.example.firsttaskapi.repository;
 
 import com.example.firsttaskapi.dto.Fighter;
+import com.example.firsttaskapi.exception.FighterNotFoundException;
 import com.example.firsttaskapi.mapper.FighterMapper;
 import org.springframework.stereotype.Repository;
 
@@ -29,5 +30,12 @@ public class FighterRepository {
 
     public boolean delete(Integer id) {
         return fighterMapper.delete(id) == 1;
+    }
+
+    public Fighter update(Fighter fighter) {
+        if (fighterMapper.update(fighter) == 0) {
+            throw new FighterNotFoundException(fighter.getId());
+        }
+        return fighter;
     }
 }

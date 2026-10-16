@@ -1,9 +1,11 @@
 package com.example.firsttaskapi.service;
 
 import com.example.firsttaskapi.dto.Fighter;
+import com.example.firsttaskapi.exception.FighterArgumentNotValidException;
 import com.example.firsttaskapi.exception.FighterNotFoundException;
 import com.example.firsttaskapi.repository.FighterRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,4 +42,21 @@ public class FighterService {
 
         return true;
     }
+
+
+    @Transactional
+    public Fighter update(Fighter fighter, Integer id) {
+        if (fighter.getName() == null || fighter.getName().isEmpty()) {
+            throw new FighterArgumentNotValidException("name is empty");
+        }
+
+        Fighter targetFighter = fighterRepository.findById(id);
+        if (targetFighter == null) {
+            throw new FighterNotFoundException(id);
+        }
+
+        fighter.setId(id);
+        return fighterRepository.update(fighter);
+    }
+
 }
