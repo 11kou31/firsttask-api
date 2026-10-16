@@ -48,4 +48,12 @@ public class FighterController {
         return ResponseEntity.noContent().build();
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Fighter> update(@PathVariable Integer id, @RequestBody Fighter fighter) {
+        fighterService.update(fighter, id);
+
+        return ResponseEntity.ok(fighter);
+    }
+
 }
